@@ -1,0 +1,26 @@
+<template>
+  <div class="chat" ref="currentMessage">
+    <div class="profile">
+      <img v-if="chat.isAi" src="@/assets/bot.svg" alt="" />
+      <img v-else src="@/assets/user.svg" alt="" />
+    </div>
+    <div class="message">{{ chat.value }}</div>
+  </div>
+</template>
+
+<script setup>
+import { nextTick, onMounted, ref, watch } from "vue";
+defineProps({ // 传出Chat组件属性
+  chat: {
+    type: Object || null,
+  },
+});
+const currentMessage = ref(null);
+onMounted(async () => {
+  await nextTick();
+  const div = currentMessage.value;
+  div.scrollIntoView({ behavior: "smooth" }); // 加载到最新消息条
+});
+</script>
+
+<style lang="scss" scoped></style>
