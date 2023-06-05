@@ -17,6 +17,7 @@
         cols="1"
         placeholder="Type Your Contents..."
         v-model="question"
+        @keypress.enter="fetchAnswer"
       >
       </textarea>
       <button type="submit"><img src="@/assets/send.svg" alt="send" /></button>
